@@ -20,6 +20,8 @@ Karnaugh, hexadecimal, octal, binario
 |Linguagem Back|Python|
 |Linguagem front|Python com TkInter|
 |Padrão de organzação|MVC|
+|Ambiente de desenvolvimento/\IDE|VScode\Termux|
+
 
 
 ## Licença 
