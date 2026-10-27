@@ -1,0 +1,328 @@
+"""
+Aplicação Tkinter: entrada de valores 0/1/X + tabela linear + mapa de Karnaugh 4x4.
+
+Arquitetura:
+    Config             → constantes imutáveis
+    ValidadorEntrada   → parsing e validação
+    RepositorioValores → lógica de negócio (sem UI)
+    TabelaView         → Treeview (tabela linear)
+    KarnaughView       → grade 4x4 (Label widgets)
+    App                → orquestra tudo
+"""
+
+from __future__ import annotations
+
+import tkinter as tk
+from dataclasses import dataclass, field
+from tkinter import messagebox, ttk
+from typing import Iterable, Sequence
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Configuração
+# ─────────────────────────────────────────────────────────────────────────────
+@dataclass(frozen=True)
+class Config:
+    titulo: str = "Tabela + Karnaugh 4x4"
+    geometria: str = "960x640"
+
+    # Ordem canônica do Karnaugh 4x4 (numeração 1..16)
+    ordem_insercao: tuple[int, ...] = (1, 2, 4, 3, 5, 6, 8, 7, 13, 14, 16, 15, 9, 10, 12, 11)
+
+    # Layout do Karnaugh: cabeçalhos das colunas (AB) e linhas (CD)
+    karnaugh_colunas_ab: tuple[str, ...] = ("00", "01", "11", "10")
+    karnaugh_linhas_cd: tuple[str, ...] = ("00", "01", "11", "10")
+
+    valores_validos: frozenset[str] = field(default_factory=lambda: frozenset({"0", "1", "X"}))
+    separadores: tuple[str, ...] = (",", " ")
+
+    # Rótulos
+    label_instrucao: str = "Insira os valores (separados por espaço ou vírgula):"
+    label_dica: str = "Aceita: 0, 1 e X"
+    botao_adicionar: str = "Adicionar à Tabela"
+    botao_limpar: str = "Limpar Tabela"
+    coluna_posicao: str = "Posição"
+    coluna_valor: str = "Valor"
+    titulo_tabela: str = "Tabela linear (posição → valor)"
+    titulo_karnaugh: str = "Mapa de Karnaugh 4×4"
+
+    # Aparência
+    altura_linhas: int = 16
+    largura_coluna: int = 110
+    celula_largura: int = 4
+    celula_altura: int = 2
+    fonte_celula: tuple[str, int, str] = ("Consolas", 14, "bold")
+
+    # Cores por valor
+    cores: dict[str, str] = field(default_factory=lambda: {
+        "0": "#d94b4b",   # vermelho
+        "1": "#2e9e4f",   # verde
+        "X": "#888888",   # cinza
+        "":  "#ffffff",   # vazio
+    })
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Validação
+# ─────────────────────────────────────────────────────────────────────────────
+class ValidadorEntrada:
+    def __init__(self, config: Config) -> None:
+        self._config = config
+
+    def tokenizar(self, texto: str) -> list[str]:
+        resultado = texto
+        for sep in self._config.separadores:
+            resultado = resultado.replace(sep, " ")
+        return resultado.split()
+
+    def normalizar(self, valor: str) -> str:
+        return valor.strip().upper()
+
+    def valores_invalidos(self, tokens: Iterable[str]) -> list[str]:
+        return [t for t in tokens if self.normalizar(t) not in self._config.valores_validos]
+
+    def excede_capacidade(self, tokens: Sequence[str]) -> bool:
+        return len(tokens) > len(self._config.ordem_insercao)
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Modelo
+# ─────────────────────────────────────────────────────────────────────────────
+class RepositorioValores:
+    """Posição (1..16) → valor. Sem dependência de Tkinter."""
+
+    def __init__(self, ordem_insercao: Sequence[int]) -> None:
+        self._ordem_insercao = tuple(ordem_insercao)
+        self._posicoes_exibicao: tuple[int, ...] = tuple(sorted(self._ordem_insercao))
+        self._valores: dict[int, str] = {p: "" for p in self._posicoes_exibicao}
+
+    @property
+    def posicoes_exibicao(self) -> tuple[int, ...]:
+        return self._posicoes_exibicao
+
+    def valor_em(self, posicao: int) -> str:
+        return self._valores.get(posicao, "")
+
+    def como_tuplas(self) -> list[tuple[int, str]]:
+        return [(p, self._valores[p]) for p in self._posicoes_exibicao]
+
+    def matriz_karnaugh(self) -> list[list[tuple[int, str]]]:
+        """
+        Retorna a grade 4x4 na ordem canônica:
+        cada célula é (posicao, valor); as posições seguem ordem_insercao.
+        """
+        ordem = self._ordem_insercao  # 16 posições em ordem de leitura
+        grade: list[list[tuple[int, str]]] = []
+        for r in range(4):
+            linha: list[tuple[int, str]] = []
+            for c in range(4):
+                posicao = ordem[r * 4 + c]
+                linha.append((posicao, self._valores[posicao]))
+            grade.append(linha)
+        return grade
+
+    def carregar(self, valores: Sequence[str]) -> None:
+        self.limpar()
+        for posicao, valor in zip(self._ordem_insercao, valores):
+            self._valores[posicao] = valor
+
+    def limpar(self) -> None:
+        for p in self._posicoes_exibicao:
+            self._valores[p] = ""
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# View: tabela linear
+# ─────────────────────────────────────────────────────────────────────────────
+class TabelaView(ttk.LabelFrame):
+    def __init__(self, master: tk.Misc, config: Config) -> None:
+        super().__init__(master, text=config.titulo_tabela, padding=10)
+        self._config = config
+        self._tree = self._construir_treeview()
+        self._construir_scrollbar()
+        self._tree.tag_configure("par", background="#f0f0f0")
+        self._tree.tag_configure("impar", background="#ffffff")
+
+    def _construir_treeview(self) -> ttk.Treeview:
+        tree = ttk.Treeview(
+            self, columns=("posicao", "valor"),
+            show="headings", height=self._config.altura_linhas,
+        )
+        tree.heading("posicao", text=self._config.coluna_posicao, anchor="center")
+        tree.heading("valor", text=self._config.coluna_valor, anchor="center")
+        tree.column("posicao", width=self._config.largura_coluna, anchor="center")
+        tree.column("valor", width=self._config.largura_coluna, anchor="center")
+        tree.pack(side="left", fill="both", expand=True)
+        return tree
+
+    def _construir_scrollbar(self) -> None:
+        sb = ttk.Scrollbar(self, orient="vertical", command=self._tree.yview)
+        self._tree.configure(yscrollcommand=sb.set)
+        sb.pack(side="right", fill="y")
+
+    def renderizar(self, linhas: Iterable[tuple[int, str]]) -> None:
+        self._tree.delete(*self._tree.get_children())
+        for i, (pos, valor) in enumerate(linhas):
+            tag = "par" if i % 2 == 0 else "impar"
+            self._tree.insert("", "end", values=(pos, valor), tags=(tag,))
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# View: mapa de Karnaugh
+# ─────────────────────────────────────────────────────────────────────────────
+class KarnaughView(ttk.LabelFrame):
+    """Grade 4x4 com cabeçalhos AB (colunas) e CD (linhas)."""
+
+    def __init__(self, master: tk.Misc, config: Config) -> None:
+        super().__init__(master, text=config.titulo_karnaugh, padding=10)
+        self._config = config
+        self._celulas: list[list[tk.Label]] = []
+        self._construir_grade()
+
+    def _construir_grade(self) -> None:
+        cfg = self._config
+
+        # Cabeçalho "AB \ CD" no canto
+        tk.Label(self, text="AB\\CD", font=("Helvetica", 10, "italic"),
+                 width=cfg.celula_largura).grid(row=0, column=0, padx=1, pady=1)
+
+        # Cabeçalhos das colunas (AB)
+        for c, ab in enumerate(cfg.karnaugh_colunas_ab, start=1):
+            tk.Label(self, text=ab, font=("Helvetica", 11, "bold"),
+                     bg="#e0e0e0", width=cfg.celula_largura,
+                     relief="ridge").grid(row=0, column=c, padx=1, pady=1, sticky="nsew")
+
+        # Linhas
+        for r, cd in enumerate(cfg.karnaugh_linhas_cd, start=1):
+            tk.Label(self, text=cd, font=("Helvetica", 11, "bold"),
+                     bg="#e0e0e0", width=cfg.celula_largura,
+                     relief="ridge").grid(row=r, column=0, padx=1, pady=1, sticky="nsew")
+
+            linha_celulas: list[tk.Label] = []
+            for c in range(4):
+                lbl = tk.Label(
+                    self, text="", width=cfg.celula_largura, height=cfg.celula_altura,
+                    font=cfg.fonte_celula, relief="ridge", borderwidth=1,
+                    bg=cfg.cores[""],
+                )
+                lbl.grid(row=r, column=c + 1, padx=1, pady=1, sticky="nsew")
+                linha_celulas.append(lbl)
+            self._celulas.append(linha_celulas)
+
+        # Faz a grade expandir proporcionalmente
+        for i in range(5):
+            self.grid_rowconfigure(i, weight=1)
+            self.grid_columnconfigure(i, weight=1)
+
+    def renderizar(self, grade: Sequence[Sequence[tuple[int, str]]]) -> None:
+        """
+        Cada célula exibe o valor; se vazia, mostra a posição em cinza claro
+        como dica de qual célula é qual.
+        """
+        cfg = self._config
+        for r, linha in enumerate(grade):
+            for c, (posicao, valor) in enumerate(linha):
+                lbl = self._celulas[r][c]
+                texto = valor if valor else str(posicao)
+                cor_texto = "black" if valor else "#bbbbbb"
+                lbl.config(text=texto, fg=cor_texto, bg=cfg.cores.get(valor, cfg.cores[""]))
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Controller
+# ─────────────────────────────────────────────────────────────────────────────
+class App:
+    def __init__(self, root: tk.Tk, config: Config | None = None) -> None:
+        self._root = root
+        self._config = config or Config()
+        self._validador = ValidadorEntrada(self._config)
+        self._repositorio = RepositorioValores(self._config.ordem_insercao)
+
+        self._configurar_janela()
+        self._entry = self._construir_area_entrada()
+        self._tabela = self._construir_tabela()
+        self._karnaugh = self._construir_karnaugh()
+        self._renderizar()
+
+    def _configurar_janela(self) -> None:
+        self._root.title(self._config.titulo)
+        self._root.geometry(self._config.geometria)
+        # Grid para dividir entrada (topo) | tabela (esq) + karnaugh (dir)
+        self._root.grid_rowconfigure(1, weight=1)
+        self._root.grid_columnconfigure(0, weight=1)
+        self._root.grid_columnconfigure(1, weight=1)
+
+    def _construir_area_entrada(self) -> tk.Entry:
+        frame = tk.Frame(self._root, padx=10, pady=10)
+        frame.grid(row=0, column=0, columnspan=2, sticky="ew")
+
+        tk.Label(frame, text=self._config.label_instrucao).pack(anchor="w")
+        tk.Label(frame, text=self._config.label_dica, fg="gray").pack(anchor="w")
+
+        entry = tk.Entry(frame, width=50)
+        entry.pack(pady=5, fill="x")
+        entry.bind("<Return>", lambda _e: self._ao_adicionar())
+
+        botoes = tk.Frame(frame)
+        botoes.pack(pady=5)
+        tk.Button(botoes, text=self._config.botao_adicionar,
+                  command=self._ao_adicionar).pack(side="left", padx=5)
+        tk.Button(botoes, text=self._config.botao_limpar,
+                  command=self._ao_limpar).pack(side="left", padx=5)
+
+        return entry
+
+    def _construir_tabela(self) -> TabelaView:
+        t = TabelaView(self._root, self._config)
+        t.grid(row=1, column=0, sticky="nsew", padx=(10, 5), pady=10)
+        return t
+
+    def _construir_karnaugh(self) -> KarnaughView:
+        k = KarnaughView(self._root, self._config)
+        k.grid(row=1, column=1, sticky="nsew", padx=(5, 10), pady=10)
+        return k
+
+    def _ao_adicionar(self) -> None:
+        tokens = self._validador.tokenizar(self._entry.get())
+        if not tokens:
+            messagebox.showwarning("Aviso", "Nenhum valor inserido!")
+            return
+
+        invalidos = self._validador.valores_invalidos(tokens)
+        if invalidos:
+            messagebox.showerror(
+                "Erro",
+                f"Valores inválidos: {invalidos}\n"
+                f"Apenas {sorted(self._config.valores_validos)} são aceitos.",
+            )
+            return
+
+        if self._validador.excede_capacidade(tokens):
+            messagebox.showerror(
+                "Erro",
+                f"Máximo de {len(self._config.ordem_insercao)} valores permitidos.",
+            )
+            return
+
+        valores = [self._validador.normalizar(t) for t in tokens]
+        self._repositorio.carregar(valores)
+        self._renderizar()
+
+    def _ao_limpar(self) -> None:
+        self._repositorio.limpar()
+        self._entry.delete(0, tk.END)
+        self._renderizar()
+
+    def _renderizar(self) -> None:
+        self._tabela.renderizar(self._repositorio.como_tuplas())
+        self._karnaugh.renderizar(self._repositorio.matriz_karnaugh())
+
+
+def main() -> None:
+    root = tk.Tk()
+    App(root)
+    root.mainloop()
+
+
+if __name__ == "__main__":
+    main()
