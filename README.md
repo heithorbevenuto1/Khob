@@ -2,13 +2,15 @@
 Karnaugh, hexadecimal, octal, binario
 
 ## Indice
-- objetivo
-- caracteristicas tecnicas
-- licença
+- Sobre o projeto
+- Funcionalidades
+- Caracteristicas tecnicas
+- Licença
 
-## objetivo
+## Sobre o projeto 
   - A aplicação tem como o objetivo auxiliar no desenvolvimento de circuitos digitais, evitando erros
-  - possuir identificação do karnaugh desejavel e organizar-lo de forma correta
+## Funcionalidades
+  - possui identificação do karnaugh desejavel e organiza ele de forma correta
   - Oferecer calculadora para conversão de bases
 
 ## Característica tecnicas
