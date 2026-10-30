@@ -20,6 +20,6 @@ import tkinter as tk
 #==========================================================================
 
 def abrir_loading():
-    janela_lo.janewithdraw()
+    janela_load.janewithdraw()
 
 abrir_loading()
