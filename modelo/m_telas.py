@@ -7,7 +7,8 @@ aqui sera configurado as funções de abertura das telas do programa, como a tel
 #==========================================================================
 #                               importar arquivos
 #==========================================================================
-import loading
+from view import loading
+
 #==========================================================================
 #                               bibliotecas
 #==========================================================================
@@ -20,6 +21,10 @@ import tkinter as tk
 #==========================================================================
 
 def abrir_loading():
-    janela_lo.janewithdraw()
+    janela_load = loading.Loading()
+    janela_load.janewithdraw()
 
 abrir_loading()
+if __name__ == "__main__":
+    janela_principal = abrir_loading()
+    janela_principal.mainloop()

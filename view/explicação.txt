@@ -1,0 +1,13 @@
+aqui estará os de interface gráfica
+
+sera usado tkinter
+
+telas
+loading
+inicio
+karnaugh
+	fazer karnaugh 2x2,2x4,4x4 que aparecera conforme o numero de casas que foi colocado
+		2x2 = menor ou igual a 4
+		2x3 = maior que quatro, menor ou igual que 8
+		4x4 = maior que 8 e igual ou menor que 16
+calculadora
