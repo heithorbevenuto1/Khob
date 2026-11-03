@@ -36,3 +36,18 @@ A AGPL-3.0 é uma licença de código aberto com *copyleft* forte. Isso signific
 Diferente de outras licenças (como a GPL ou MIT), a AGPL exige que, **se você modificar este software e disponibilizá-lo para interação de usuários através de uma rede (por exemplo, como um serviço web ou uma API)**, você deve tornar o código-fonte da sua versão modificada disponível para esses usuários.
 
 Para ler o texto legal completo e oficial, consulte o arquivo [LICENSE](LICENSE) neste repositório.
+
+
+
+## Bibliotecas utilizadas
+-controle
+  - main
+  - c_karnaugh
+      -   
+  - main
+      -
+- view
+  -loading.py
+    - pip install pillow
+  - inicio
+      - pip install pywinstyles
