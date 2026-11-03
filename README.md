@@ -40,14 +40,12 @@ Para ler o texto legal completo e oficial, consulte o arquivo [LICENSE](LICENSE)
 
 
 ## Bibliotecas utilizadas
--controle
+- controle
   - main
-  - c_karnaugh
-      -   
+  - c_karnaugh   
   - main
-      -
 - view
-  -loading.py
+  - loading.py
     - pip install pillow
   - inicio
-      - pip install pywinstyles
+    - pip install pywinstyles
