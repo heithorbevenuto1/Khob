@@ -1,32 +1,24 @@
-#==========================================================================
-#                               bibliotecas
-#==========================================================================
-
 import tkinter as tk
-from tkinter import messagebox
+from view.estilo import aplicar_css, classe
 
 
-#==========================================================================
-#                     Tamanho e centralização da janela
-#==========================================================================
-#variavel para a janela
-janela= tk.Tk()
+def criar(raiz):
+    """Monta a tela inicial dentro da janela raiz."""
+    raiz.title("Programa Principal")
 
-#pega o tamanho da tela em pixeis
-ltela = janela.winfo_screenwidth()
-atela = janela.winfo_screenheight()
-print(ltela,atela)
+    ltela = raiz.winfo_screenwidth()
+    atela = raiz.winfo_screenheight()
+    largura = ltela - 300
+    altura = atela - 300
+    px = (ltela - largura) // 2
+    py = (atela - altura) // 2
+    raiz.geometry(f"{largura}x{altura}+{px}+{py}")
 
-#tamanho da janela
-largura = ltela-300
-altura = atela-300
-#posicionar no meio
-px = (ltela - largura) // 2
-py= (atela - altura) // 2
+    classe(tk.Label(raiz, text="Bem-vindo ao Programa Principal!"), "titulo").pack(pady=100)
+    tk.Button(raiz, text="Clique aqui").pack()
 
-janela.geometry(f"{largura}x{altura}+{px}+{py}")
+    raiz.deiconify()   # mostra a raiz (ela começa escondida durante o loading)
+    aplicar_css(raiz)
 
-janela.config(bg= "#DA3582") #fundo da tela
-
-
-janela.mainloop()
+    # F5 recarrega o CSS sem fechar o programa
+    raiz.bind("<F5>", lambda e: aplicar_css(raiz))
