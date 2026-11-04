@@ -47,6 +47,8 @@ Para ler o texto legal completo e oficial, consulte o arquivo [LICENSE](LICENSE)
   - c_karnaugh   
   - main
 - view
+  - Inicio.py
+  - estilo.py
   - loading.py
     - pip install pillow
   - inicio
