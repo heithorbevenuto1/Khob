@@ -19,9 +19,11 @@ Karnaugh, hexadecimal, octal, binario
 |-|-|
 |Linguagem Back|Python|
 |Linguagem front|Python com TkInter|
+|Linguagem de estolo|CSS|
 |Padrão de organzação|MVC|
 |Ambiente de desenvolvimento<br>IDE|VScode<br>Termux<br>git bash|
 |Controle de versão|Git<br>Github|
+|IA's utilizadas|Deepseek<br>gemini<br>Kimi K3<br>|
 
 
 
