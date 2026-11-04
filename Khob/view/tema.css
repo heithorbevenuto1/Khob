@@ -1,0 +1,28 @@
+/* Janelas (a raiz é Tk, o loading é Toplevel) */
+Tk, Toplevel {
+    background: #ff96c7;
+    header-color: #ff96c7;
+    border-color: #ff96c7;
+}
+
+Label {
+    color: #ffffff;
+    background: #ff96c7;
+    font-family: Consolas;
+    font-size: 14;
+}
+
+/* Só os Labels marcados com a classe "titulo" */
+Label.titulo {
+    font-size: 22;
+    font-weight: bold;
+}
+
+Button {
+    color: #ff96c7;
+    background: #ffffff;
+    font-family: Consolas;
+    font-size: 12;
+    font-weight: bold;
+    border-width: 0;
+}
