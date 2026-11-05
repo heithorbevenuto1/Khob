@@ -34,6 +34,17 @@ def karnaugh(saida):
                 [n[8],  n[9],  n[11], n[10]],
             ]
             return mapa
+    elif len(saida) <= 32:
+        alvo = 32
+        def montar():
+            #karnaugh 4x8 ou 5 variaveis(5 bits)
+            mapa = [
+                [n[0],  n[1],  n[3],  n[2],  n[6],  n[7],  n[5],  n[4]],
+                [n[8],  n[9],  n[11], n[10], n[14], n[15], n[13], n[12]],
+                [n[24], n[25], n[27], n[26], n[30], n[31], n[29], n[28]],
+                [n[16], n[17], n[19], n[18], n[22], n[23], n[21], n[20]],   
+            ]
+            return mapa
         #se o a entrada do usuario for maior que o maior karnaugh suportado pelo sistema, ele vai imprimir uma mensagem de erro
     else:
         print("Entrada grande demais (máx. 16).")
@@ -70,5 +81,5 @@ def karnaugh_loop():
         else: #caso possua algum valor equivocado ele vai imprimir a mensagem de erro
             invalidos = set(entrada) - set("01X") #invalo são todos valores da entrada exceto 0,1,X
             print(f"Caracteres inválidos: {invalidos}")
-karnaugh_loop() #chama a função karnaugh loop pra ser executada, 
-                #dentro dela ela chama a função karnaugh, assim é comprimido todo o codigo dentro de uma unica função, otimo para ser usado em outros arquivos
+
+karnaugh_loop()
