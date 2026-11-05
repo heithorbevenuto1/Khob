@@ -1,10 +1,10 @@
 # Khob
-Karnaugh, hexadecimal, octal, binario
+Karnaugh, hexadecimal, octal, binário
 
 ## Indice
 - Sobre o projeto
 - Funcionalidades
-- Caracteristicas tecnicas
+- Características técnicas
 - Licença
 
 ## Sobre o projeto 
@@ -18,12 +18,12 @@ Karnaugh, hexadecimal, octal, binario
 |categoria|Tecnologia|
 |-|-|
 |Linguagem Back|Python|
-|Linguagem front|Python com TkInter|
-|Linguagem de estolo|CSS|
-|Padrão de organzação|MVC|
+|Linguagem Front|Python com TkInter|
+|Linguagem de estilo|CSS|
+|Padrão de organização|MVC|
 |Ambiente de desenvolvimento<br>IDE|VScode<br>Termux<br>git bash|
 |Controle de versão|Git<br>Github|
-|IA's utilizadas|Deepseek<br>gemini<br>Kimi K3<br>|
+|IA's utilizadas|Deepseek<br>gemini<br>Kimi K3<br>Claude<br>|
 
 
 
