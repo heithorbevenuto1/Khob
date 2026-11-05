@@ -70,4 +70,5 @@ def karnaugh_loop():
         else: #caso possua algum valor equivocado ele vai imprimir a mensagem de erro
             invalidos = set(entrada) - set("01X") #invalo são todos valores da entrada exceto 0,1,X
             print(f"Caracteres inválidos: {invalidos}")
-
+karnaugh_loop() #chama a função karnaugh loop pra ser executada, 
+                #dentro dela ela chama a função karnaugh, assim é comprimido todo o codigo dentro de uma unica função, otimo para ser usado em outros arquivos
