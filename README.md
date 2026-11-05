@@ -10,7 +10,7 @@ Karnaugh, hexadecimal, octal, binário
 ## Sobre o projeto 
   - A aplicação tem como o objetivo auxiliar no desenvolvimento de circuitos digitais, evitando erros
 ## Funcionalidades
-  - possui identificação do karnaugh desejavel e organiza ele de forma correta
+  - possui identificação do Karnaugh desejavel e organiza ele de forma correta
   - Oferecer calculadora para conversão de bases
 
 ## Característica tecnicas
