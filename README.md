@@ -1,7 +1,7 @@
 # Khob
 Karnaugh, hexadecimal, octal, binário
 
-## Indice
+## Índice
 - Sobre o projeto
 - Funcionalidades
 - Características técnicas
