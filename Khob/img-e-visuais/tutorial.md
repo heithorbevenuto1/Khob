@@ -19,14 +19,17 @@ O Mapa de Karnaugh é um método de simplificação lógica em eletrônica digit
 
 ## Tabela verdade e variáveis de entrada e saída
 
-O mapa de karnaugh é utilidado até 6 variaveis, o mais comum de se ver é de 2,3 e 4 variaveis.Mais do que 6
+O mapa de karnaugh é utilizado até 6 variáveis, o mais comum de se ver é de 2,3 e 4 variáveis.Mais do que 6
 ### S
-Neste artigo usaremos o S como saída, enquanto as letras iniciando em A serão a entrada, por ir até 6 elas são: A,B,C,D,E e F. Entretando, o uso de 5 ou 6 variaveis é pouco usado, logo a aplicação usara <br>A saída não segue um valor fixo, ela vai variar dependendo das necessidades do circuito, portanto neste arquivo ela será representada com espaços vazios.
-### 1 variavel
-A tabela verdade com uma variavel
+Neste artigo usaremos o S como saída, enquanto as letras iniciando em A serão a entrada, por ir até 6 elas são: A,B,C,D,E e F. Entretanto, o uso de 5 ou 6 variáveis é pouco usado, logo a aplicação usara <br>A saída não segue um valor fixo, ela vai variar dependendo das necessidades do circuito, portanto neste arquivo ela será representada com espaços vazios.
+### 1 variável
+A tabela verdade com uma variável possui apenas 1 entrada e dois estados, desligado (0) e ligado (1), junto a isso possui poucas possibilidades de circuito.<br>Seu uso pode ser resumido a ligado e desligado.
 |A|S|
 |:-:|:-:|
 |0||
 |1||
+
+### 2 variáveis
+A tabela verdade 
 
 
