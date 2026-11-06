@@ -1,13 +1,13 @@
 /* Janelas (a raiz é Tk, o loading é Toplevel) */
 Tk, Toplevel {
-    background: #ff96c7;
-    header-color: #ff96c7;
-    border-color: #ff96c7;
+    background: #e4ffea;
+    header-color: #a7a6a6;
+    border-color: #a7a6a6;
 }
 
 Label {
-    color: #ffffff;
-    background: #ff96c7;
+    color: #0e0d0d;
+    background: #e4ffea;
     font-family: Consolas;
     font-size: 14;
 }
@@ -19,10 +19,29 @@ Label.titulo {
 }
 
 Button {
-    color: #ff96c7;
-    background: #ffffff;
+    color: #e4ffea;
+    background: #e4ffea;
     font-family: Consolas;
     font-size: 12;
     font-weight: bold;
     border-width: 0;
+}
+Frame {
+    background: #e4ffea;
+}
+
+Entry {
+    color: #0e0d0d;
+    background: #ffffff;
+    border-width: 1;
+}
+
+Button.opcao {
+    color: #232423;
+    background: #e4ffe4;
+}
+
+Button.ativa {
+    color: #2c2525;
+    background: #96ffb0;
 }
