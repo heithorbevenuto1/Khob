@@ -2,7 +2,15 @@ def karnaugh(saida):
     saida = saida.upper().replace(" ", "") #transforma todos os caracteres em maiúsculo (upper()) e remove espaços (replace(" ", ""))
     
     # utiliza condições (compara por meio do len o tamanho de 'saida') iniciando do menor para o maior, se possuir mais casas que a primeira condição ele vai pra segunda e assim por diante, até chegar na condição que se encaixa
-    if len(saida) <= 4:
+    if len(saida) <= 2: #o de 1 variavel não é utilizado de forma seria, sua aplicação neste programa para ser o mais completo possivel e atender todos objetivos que os usuarios possom necessitar
+        alvo = 2
+        def montar():
+            mapa = [
+                n[0],n[1],
+            ]
+            return mapa
+    
+    elif len(saida) <= 4:
         alvo = 4 #este é o temanho ideal, sendo 4,8, 16, essa variavel sera usada posteriormente pra adicionar X
         def montar(): 
             #função que monta o karnaugh, ela é igual pra todas pq só uma é ativada
@@ -47,7 +55,7 @@ def karnaugh(saida):
             return mapa
         #se o a entrada do usuario for maior que o maior karnaugh suportado pelo sistema, ele vai imprimir uma mensagem de erro
     else:
-        print("Entrada grande demais (máx. 16).")
+        print("Entrada grande demais (máx. 32).")
         return
     
     # aqui ele verificara se a entrada atinge um numero de base 2, como 4,8 ou 16, se estiver entre um e outro mas faltar bits, ele completara com X, que é o valor neutro do karnaugh
@@ -68,8 +76,13 @@ def karnaugh(saida):
 
 def karnaugh_loop():
     # loop é infinito (por causa do while True), caso o break que esta comentado no if all continue comentado
+    print("" \
+    "================================================================" \
+    "                            Khob" \
+    "================================================================")
     while True:
-        entrada = input("Digite (apenas 0, 1 e X): ").upper() #é onde o usuario digita sua entrada, e o upper() transforma todos os caracteres em maiúsculo, para que o sistema não se confunda com letras minusculas
+        print("O programa aceita: (0),(1),(x) e (X)")
+        entrada = input(":> ").upper() #é onde o usuario digita sua entrada, e o upper() transforma todos os caracteres em maiúsculo, para que o sistema não se confunda com letras minusculas
     
         if not entrada: #porta logica NOT, se o usuario não digitou nada e apertou enter, ele vai imprimir uma mensagem de erro e continuar o loop
             print("Entrada vazia.")
