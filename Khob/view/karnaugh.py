@@ -191,7 +191,7 @@ def criar(janela_raiz: ctk.CTk) -> None:
         container_rolavel,
         text="Mapa de Karnaugh",
         font=ctk.CTkFont(size=26, weight="bold"),
-        text_color=COR_TEXTO_PRINCIPAL
+        text_color=COR_BOTAO,
     )
     rotulo_titulo.pack(pady=(10, 5))
 
