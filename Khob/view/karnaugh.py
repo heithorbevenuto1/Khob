@@ -352,8 +352,8 @@ def criar(janela_raiz: ctk.CTk) -> None:
         if not all(caractere in "01X" for caractere in sequencia_digitada):
             rotulo_erro.configure(text="Use apenas os caracteres válidos: 0, 1 e X.")
             return
-        if len(sequencia_digitada) > 32:
-            rotulo_erro.configure(text="Entrada muito longa (limite máximo de 32 bits).")
+        if len(sequencia_digitada) > 128:
+            rotulo_erro.configure(text="Entrada muito longa (limite máximo de 128 bits).")
             return
 
         limite_tamanho = TAMANHOS_MAPA[tamanho_selecionado]
@@ -391,7 +391,7 @@ def criar(janela_raiz: ctk.CTk) -> None:
                     cartao_celula,
                     text=valor_celula,
                     font=ctk.CTkFont(family="Consolas", size=20, weight="bold"),
-                    text_color=COR_TEXTO_PRINCIPAL
+                    text_color=COR_TEXTO_SECUNDARIO
                 )
                 rotulo_valor.place(relx=0.5, rely=0.5, anchor="center")
 
