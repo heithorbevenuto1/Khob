@@ -12,6 +12,7 @@
       <li>4 variáveis (4x4 - 16 bits)</li>
       <li>5 variaveis (4x8 - 32 bits)</li>
       <li>6 variaveis (8x8 - 64 bits)</li>
+      <li>7 variaveis (8x16 - 128 bits)</li>
     </ul>
   </li>
   <li>Como usa a aplicação</li>
