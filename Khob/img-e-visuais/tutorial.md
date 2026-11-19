@@ -141,7 +141,25 @@ O mapa de karnaugh como anteriormente dito, é uma simplificação visual e simp
 |0|||
 |1|||    
 
-|A/B|0 +"0" = 00|"0" +"1" = 01|+|11|10|
+|A/BC|0 +"0" = 00|"0" +"1" = 01|+|11|10|
 |-|-|-|-|-|-|
 |0|||||
 |1|||||
+
+|A/BC|00|01|11|10|
+|-|-|-|-|-|
+|0|||||
+|1|||||
+
+como podemos observar, ao passar de de 2 variaveis para 3, o mapa duplicou para a direita e os numeros inverteram, onde era 0 virou 1 e onde era 1 virou 0 (00 → 11 e 01 → 10). Además disso, foi adicionado a variavel C, para se guiar é só analisar o a posição, como é BC, o primeiro digito é para o B e o segundo para o C. Esses numeros é para vc se encontrar na tabela verdade e posicionarna casa exata do karnaugh, como se fossem coordenadas, exemplo:
+
+|A|B|C|S|
+|-|-|-|-|
+|1|0|1|X|
+
+Essa posição diz que o X esta na linha onde A é 1, B é 0 e C é 1, no caso essa:
+
+|A/BC|00|01|11|10|
+|-|-|-|-|-|
+|0|||||
+|1||X|||
