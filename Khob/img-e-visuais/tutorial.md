@@ -142,6 +142,6 @@ O mapa de karnaugh como anteriormente dito, é uma simplificação visual e simp
 |1|||    
 
 |A/B|0 +"0" = 00|"0" +"1" = 01|+|11|10|
-|-|-|-|-|-|  
+|-|-|-|-|-|-|
 |0|||||
 |1|||||
