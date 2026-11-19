@@ -336,4 +336,8 @@ A tabela verdade de 2 variaveis possuicomeça a ser mais usual, a cada varivael 
 
 ## Karnaugh
 
-O mapa de karnaugh como anteriormente dito
+O mapa de karnaugh como anteriormente dito, é uma simplificação visual e simples de encontrar a equação lógica a partir da saìda. <br> A mapa de karnaugh pode ser expandido, a cada variavel ele dobra, primeiro para a direita e depois para baixo, uma cópiia do anterios só que invertido. exemplo:
+
+|A/B|0|1|
+|0|||
+|1|||    --->
