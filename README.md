@@ -16,7 +16,7 @@ Karnaugh, hexadecimal, octal, binario
 
 |categoria|Tecnologia|
 |-|-|
-|Linguagem Back|Python|
+|Linguagem Back|Python 3.13|
 |Linguagem front|Python com CustomTkInter|
 |Padrão de organzação|MVC|
 |Ambiente de desenvolvimento<br>IDE|VScode<br>git bash|
