@@ -18,6 +18,11 @@
   <li>Como usa a aplicação</li>
 </ul>
 
+# Sobre a aplicação
+
+
+
+# Sobre o assunto
 ## O que é
 O Mapa de Karnaugh é um método de simplificação lógica em eletrônica digital mais eficiente e fácil que o uso de expressões booleanas.<br>Enquanto a álgebra booleana exige aplicar dezenas de regras (De Morgan, absorção, distribuição...), o mapa resolve a mesma simplificação apenas visualmente, agrupando células vizinhas. <br>O mapa de Karnaugh pega os bits da saída e organiza em um mapa. Essa organização é feita para achar a fórmula do circuito lógico.
 
@@ -50,87 +55,87 @@ a organização da das portas vai de A até F (depende do numero de variaveis), 
 ### 1 variável
 A tabela verdade com uma variável possui apenas 1 entrada e dois estados, desligado (0) e ligado (1), junto a isso possui poucas possibilidades de circuito.<br>Seu uso pode ser resumido a ligado e desligado.
 |A|S|
-|:-:|:-:|
-|0||
-|1||
+|-|-|
+|0| |
+|1| |
 
 ### 2 variáveis
 A tabela verdade de 2 variaveis possuicomeça a ser mais usual, a cada varivael adicionada a tabela dobra
 |A|B|S|
 |-|-|-|
-|0|0||
-|0|1||
-|1|0||
-|1|1||
+|0|0| |
+|0|1| | 
+|1|0| |
+|1|1| |
 ### 3 variaveis
 |A|B|C|S|
 |-|-|-|-|
-|0|0|0||
-|0|0|1||
-|0|1|0||
-|0|1|1||
-|1|0|0||
-|1|0|1||
-|1|1|0||
-|1|1|1||
+|0|0|0| |
+|0|0|1| |
+|0|1|0| | 
+|0|1|1| | 
+|1|0|0| |
+|1|0|1| |
+|1|1|0| |  
+|1|1|1| | 
 
 ### 4 variaveis
 
 |A|B|C|D|S|
 |-|-|-|-|-|
-|0|0|0|0||
-|0|0|0|1||
-|0|0|1|0||
-|0|0|1|1||
-|0|1|0|0||
-|0|1|0|1||
-|0|1|1|0||
-|0|1|1|1||
-|1|0|0|0||
-|1|0|0|1||
-|1|0|1|0||
-|1|0|1|1||
-|1|1|0|0||
-|1|1|0|1||
-|1|1|1|0||
-|1|1|1|1||
+|0|0|0|0| |
+|0|0|0|1| |
+|0|0|1|0| |
+|0|0|1|1| |
+|0|1|0|0| | 
+|0|1|0|1| |
+|0|1|1|0| |
+|0|1|1|1| |
+|1|0|0|0| |
+|1|0|0|1| |
+|1|0|1|0| |
+|1|0|1|1| |
+|1|1|0|0| |
+|1|1|0|1| |
+|1|1|1|0| |
+|1|1|1|1| | 
 
 ### 5 variaveis
 
 |A|B|C|D|E|S|
 |-|-|-|-|-|-|
-|0|0|0|0|0||
-|0|0|0|0|1||
-|0|0|0|1|0||
-|0|0|0|1|1||
-|0|0|1|0|0||
-|0|0|1|0|1||
-|0|0|1|1|0||
-|0|0|1|1|1||
-|0|1|0|0|0||
-|0|1|0|0|1||
-|0|1|0|1|0||
-|0|1|0|1|1||
-|0|1|1|0|0||
-|0|1|1|0|1||
-|0|1|1|1|0||
-|0|1|1|1|1||
-|1|0|0|0|0||
-|1|0|0|0|1||
-|1|0|0|1|0||
-|1|0|0|1|1||
-|1|0|1|0|0||
-|1|0|1|0|1||
-|1|0|1|1|0||
-|1|0|1|1|1||
-|1|1|0|0|0||
-|1|1|0|0|1||
-|1|1|0|1|0||
-|1|1|0|1|1||
-|1|1|1|0|0||
-|1|1|1|0|1||
-|1|1|1|1|0||
-|1|1|1|1|1||
+|0|0|0|0|0| |
+|0|0|0|0|1| | 
+|0|0|0|1|0| | 
+|0|0|0|1|1| |   
+|0|0|1|0|0| |  
+|0|0|1|0|1| |  
+|0|0|1|1|0| |  
+|0|0|1|1|1| |  
+|0|1|0|0|0| |  
+|0|1|0|0|1| |  
+|0|1|0|1|0| |  
+|0|1|0|1|1| | 
+|0|1|1|0|0| |
+|0|1|1|0|1| |
+|0|1|1|1|0| |
+|0|1|1|1|1| |
+|1|0|0|0|0| |
+|1|0|0|0|1| |
+|1|0|0|1|0| |
+|1|0|0|1|1| |
+|1|0|1|0|0| |
+|1|0|1|0|1| |
+|1|0|1|1|0| |
+|1|0|1|1|1| |
+|1|1|0|0|0| |
+|1|1|0|0|1| |
+|1|1|0|1|0| |
+|1|1|0|1|1| |
+|1|1|1|0|0| |
+|1|1|1|0|1| | 
+|1|1|1|1|0| | 
+|1|1|1|1|1| |
 
 ## Karnaugh
 
@@ -138,18 +143,18 @@ O mapa de karnaugh como anteriormente dito, é uma simplificação visual e simp
 
 |A/B|0|1|
 |-|-|-|  
-|0|||
-|1|||    
+|**0**|||
+|**1**|||    
 
 |A/BC|0 +"0" = 00|"0" +"1" = 01|+|11|10|
 |-|-|-|-|-|-|
-|0||||||
-|1||||||
+|**0**| | | | | |
+|**1**| | | | | |
 
 |A/BC|00|01|11|10|
 |-|-|-|-|-|
-|0|||||
-|1|||||
+|**0**| | | | |
+|**1**| | | | | 
 
 como podemos observar, ao passar de de 2 variaveis para 3, o mapa duplicou para a direita e os numeros inverteram, onde era 0 virou 1 e onde era 1 virou 0 (00 → 11 e 01 → 10). Además disso, foi adicionado a variavel C, para se guiar é só analisar o a posição, como é BC, o primeiro digito é para o B e o segundo para o C. Esses numeros você utiliza para encontrar na tabela verdade e posicionar na casa exata do karnaugh, como se fossem coordenadas, exemplo:
 
@@ -161,8 +166,23 @@ Essa posição diz que o X esta na linha onde A é 1, B é 0 e C é 1, no caso e
 
 |A/BC|00|01|11|10|
 |-|-|-|-|-|
-|0|||||
-|1||X|||
+|**0**| | | | |
+|**1**| |X| | |
 
 O próximo caso é de 4x4, depois dele a lógica de expanção se mantem igual
 
+|AB/CD|00|01|11|10|
+|-|-|-|-|-|
+|**00**||||||
+|**01**||||||
+|**11**||||||
+|**10**||||||
+
+Para o local das variaveis, se nota que o B passou de lado, a lógica disso é simples, as linhas podem ter somente 1 variavel a menos que as colunas, caso o numero de variaveis aumentar para impar, a nova variavel é acresentada ao lado que representa as colunas (em caso de estarem juntas na célula, ela esta a direita da barra), e quando o valor aumentar 1 variavel e virar par, a primenira variavel a direita passa a ser a ultima da esquerda. Exemplo
+
+|(2x4): A/BC| &rarr; |(4x4): AB/CD |
+|-|-|-|
+
+como podemos analizar, a variavel D foi acrescentada no final da regigão das colunas (direita da barra) e a variavel B passou para ultima posição da região das linhas (esquerda da barra)
+
+##
