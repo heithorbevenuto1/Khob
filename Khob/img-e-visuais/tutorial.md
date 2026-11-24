@@ -185,4 +185,28 @@ Para o local das variaveis, se nota que o B passou de lado, a lógica disso é s
 
 como podemos analizar, a variavel D foi acrescentada no final da regigão das colunas (direita da barra) e a variavel B passou para ultima posição da região das linhas (esquerda da barra)
 
-##
+## Formação de grupos
+
+Para formar grupos com karnaugh você deve indentificar um conjunto de linhas, colunas ou grupos quadrados, seus tamanhos permitidos são feitos com valores de 2<sup>X</sup>, como por exemplo 1 elemento (2<sup>0</sup>), 2 elementos (2<sup>1</sup>), 4 elemento (2<sup>2</sup>), 8 elementos (2<sup>3</sup>) e etc.
+|1111|
+|:-:|    
+
+|1|
+|:-:|
+|**1**|
+|**1**|
+|**1**|
+
+|1|1|
+|-|-|
+|**1**|**1**|
+
+Nos exemplos acima ambos são grupos de quatro elementos.<br>
+
+<br> Dentro dos grupos só podem conter 1 ou X. No caso do X ele pode ser 1 ou 0, você só deve consider como 1 caso ele auxilie na formação de um grupo maiores, exemplo:
+
+|1|1|
+|-|-|
+|**1**|**X**|
+
+Nesse caso o X auxiliaria em transformar o dois grupos de dois elementos cada em apenas um grupo com quatro elementos, reduzindo o numero de portas do circuito final
