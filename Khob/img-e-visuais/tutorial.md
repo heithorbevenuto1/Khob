@@ -20,6 +20,14 @@
 
 # Sobre a aplicação
 
+## Como utilizar
+<li>Mapa de Karnaugh: Acesse a ferramenta pelo menu inicial, insira uma sequência de valores binários (0 e 1), podendo utilizar X para condições indiferentes. Escolha o tamanho do mapa ou utilize a opção automática e gere o resultado para visualizar o mapa e a tabela verdade.
+
+<li>Conversor de Bases: Acesse o conversor, digite o número desejado, selecione sua base de origem (Binária, Decimal, Octal ou Hexadecimal) e clique em converter. O programa apresentará os valores equivalentes nas outras bases.
+
+<li>Módulo de Treinamento: Utilize essa opção para estudar os conceitos de Mapas de Karnaugh, variáveis, tabelas verdade e formação de grupos.
+
+<li>Configurações: Permite configurar e personalizar a aparência do programa, por exemplo, escolhendo entre os temas claro, escuro ou automático.
 
 
 # Sobre o assunto
